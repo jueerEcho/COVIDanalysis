@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 II. Data sources | Final_5702</title>
+  <meta name="description" content="Chapter 9 II. Data sources | Final_5702" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 II. Data sources | Final_5702" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 II. Data sources | Final_5702" />
+  
+  
+  
+
+<meta name="author" content="Brian Mao" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="i-introduction.html"/>
+<link rel="next" href="v-results.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#brian"><i class="fa fa-check"></i><b>2.1</b> Brian</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#pan"><i class="fa fa-check"></i><b>2.2</b> Pan</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#brian-1"><i class="fa fa-check"></i><b>3.1</b> Brian</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#q2"><i class="fa fa-check"></i><b>3.2</b> Q2</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#brian-2"><i class="fa fa-check"></i><b>4.1</b> Brian</a></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#q2-1"><i class="fa fa-check"></i><b>4.2</b> Q2</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#brian-3"><i class="fa fa-check"></i><b>5.1</b> Brian</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#q2-2"><i class="fa fa-check"></i><b>5.2</b> Q2</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="conclusion.html"><a href="conclusion.html#question-2"><i class="fa fa-check"></i><b>7.1</b> Question 2</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="i-introduction.html"><a href="i-introduction.html"><i class="fa fa-check"></i><b>8</b> I. Introduction</a></li>
+<li class="chapter" data-level="9" data-path="ii-data-sources.html"><a href="ii-data-sources.html"><i class="fa fa-check"></i><b>9</b> II. Data sources</a></li>
+<li class="chapter" data-level="10" data-path="v-results.html"><a href="v-results.html"><i class="fa fa-check"></i><b>10</b> V. Results</a></li>
+<li class="chapter" data-level="11" data-path="data-source.html"><a href="data-source.html"><i class="fa fa-check"></i><b>11</b> Data Source:</a>
+<ul>
+<li class="chapter" data-level="11.0.1" data-path="data-source.html"><a href="data-source.html#data-loading"><i class="fa fa-check"></i><b>11.0.1</b> 1. Data Loading</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Final_5702</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ii.-data-sources" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> II. Data sources</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ii-data-sources.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data is collected from https://covid.cdc.gov/covid-data-tracker/#vaccinations</span></span>
+<span id="cb2-2"><a href="ii-data-sources.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># download three csv file for case dath overtime, vaccination rate in the us by states, and demographic data for vaccination</span></span>
+<span id="cb2-3"><a href="ii-data-sources.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the problems for the data sets are missing values, not in the desired format, lack of longitude and latitude information for a map plot</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ii-data-sources.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#import three files</span></span>
+<span id="cb3-2"><a href="ii-data-sources.html#cb3-2" aria-hidden="true" tabindex="-1"></a>case_dath_clean_overtime <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;./Cases_Deaths_clean.csv&#39;</span>)</span>
+<span id="cb3-3"><a href="ii-data-sources.html#cb3-3" aria-hidden="true" tabindex="-1"></a>vaccination_us <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;./Vaccination_us_clean.csv&#39;</span>)</span>
+<span id="cb3-4"><a href="ii-data-sources.html#cb3-4" aria-hidden="true" tabindex="-1"></a>vaccination_age <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;./vaccination_by_age.csv&#39;</span>)</span>
+<span id="cb3-5"><a href="ii-data-sources.html#cb3-5" aria-hidden="true" tabindex="-1"></a>vaccination_race <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;./Vaccination_Ethnicity.csv&#39;</span>)</span></code></pre></div>
+<ol start="4" style="list-style-type: upper-roman">
+<li>Missing values and data transformation</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ii-data-sources.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data cleaning and missing values</span></span>
+<span id="cb4-2"><a href="ii-data-sources.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># in the vaccination_us table we are only interested in the colums -(State/Territory/Federal Entity, Total Doses Delivered, People with at least One Dose by State of Residence, Percent of Total Pop with at least One Dose by State of Residence, People Fully Vaccinated by State of Residence, Percent of Total Pop Fully Vaccinated by State of Residence, Percent of Total Pop with 1+ Doses by State of Residence, Percent of Total Pop with 2 Doses by State of Residence), hence we need to subset our data </span></span>
+<span id="cb4-3"><a href="ii-data-sources.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb4-4"><a href="ii-data-sources.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-5"><a href="ii-data-sources.html#cb4-5" aria-hidden="true" tabindex="-1"></a>vaccination_us_d <span class="ot">=</span> <span class="fu">select</span>(vaccination_us, <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">10</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">34</span>,<span class="dv">37</span>)</span>
+<span id="cb4-6"><a href="ii-data-sources.html#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="ii-data-sources.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">gg_miss_case</span>(vaccination_us_d, <span class="at">facet =</span> vaccination_us_d<span class="sc">$</span>State.Territory.Federal.Entity)</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ii-data-sources.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># after ploting the missing values graph we discovered that there are three states contains missing values</span></span>
+<span id="cb5-2"><a href="ii-data-sources.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># they are Bureau of Prisons, Dept of Defense and Veterans Health. theses three values are not any states so we</span></span>
+<span id="cb5-3"><a href="ii-data-sources.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># decided to remove these three records</span></span>
+<span id="cb5-4"><a href="ii-data-sources.html#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="ii-data-sources.html#cb5-5" aria-hidden="true" tabindex="-1"></a>vaccination_us_f <span class="ot">&lt;-</span> vaccination_us_d[<span class="sc">!</span>vaccination_us_d<span class="sc">$</span>State.Territory.Federal.Entity <span class="sc">==</span> <span class="st">&quot;Bureau of Prisons&quot;</span> <span class="sc">&amp;</span> <span class="sc">!</span>vaccination_us_d<span class="sc">$</span>State.Territory.Federal.Entity <span class="sc">==</span> <span class="st">&quot;Dept of Defense&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb5-6"><a href="ii-data-sources.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>vaccination_us_d<span class="sc">$</span>State.Territory.Federal.Entity <span class="sc">==</span> <span class="st">&quot;Veterans Health&quot;</span>, ]</span>
+<span id="cb5-7"><a href="ii-data-sources.html#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="ii-data-sources.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># the second table is total cases and death by states since Jan 22nd 2020</span></span>
+<span id="cb5-9"><a href="ii-data-sources.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># in the case_dath_clean_overtime table we are only interested in the colums -(submission_date, state,  tot_cases, new_case, tot_death, new_death), hence we need to subset my data) hence we need to subset our data </span></span>
+<span id="cb5-10"><a href="ii-data-sources.html#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="ii-data-sources.html#cb5-11" aria-hidden="true" tabindex="-1"></a>case_dath_clean_overtime_d <span class="ot">=</span> <span class="fu">select</span>(case_dath_clean_overtime, <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">11</span>)</span>
+<span id="cb5-12"><a href="ii-data-sources.html#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="ii-data-sources.html#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plot it again by states to see if there is any missing value</span></span>
+<span id="cb5-14"><a href="ii-data-sources.html#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">##gg_miss_case(case_dath_clean_overtime_d, facet = case_dath_clean_overtime_d$state)</span></span>
+<span id="cb5-15"><a href="ii-data-sources.html#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="ii-data-sources.html#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># there is no missing values in this table (0 in the means there is no new case or new death for the date)</span></span>
+<span id="cb5-17"><a href="ii-data-sources.html#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="ii-data-sources.html#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># submission date is in string format. we changed it to date type</span></span>
+<span id="cb5-19"><a href="ii-data-sources.html#cb5-19" aria-hidden="true" tabindex="-1"></a>case_dath_clean_overtime_d<span class="sc">$</span>submission_date <span class="ot">&lt;-</span><span class="fu">as.Date</span>(case_dath_clean_overtime_d<span class="sc">$</span>submission_date, <span class="at">format =</span> <span class="st">&quot;%m/%d/%Y&quot;</span>)</span>
+<span id="cb5-20"><a href="ii-data-sources.html#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="ii-data-sources.html#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="ii-data-sources.html#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># in order to see total death and cases by state we need to aggregate values by staes</span></span>
+<span id="cb5-23"><a href="ii-data-sources.html#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
+<span id="cb5-24"><a href="ii-data-sources.html#cb5-24" aria-hidden="true" tabindex="-1"></a>tot_dc <span class="ot">&lt;-</span><span class="fu">ddply</span>(case_dath_clean_overtime_d, <span class="st">&quot;state&quot;</span>, summarize, <span class="at">tot_case =</span> <span class="fu">max</span>(tot_cases), <span class="at">tot_death =</span> <span class="fu">max</span>(tot_death) )</span>
+<span id="cb5-25"><a href="ii-data-sources.html#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="ii-data-sources.html#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co"># down longitude and latidue values for each state then merge it to our data</span></span>
+<span id="cb5-27"><a href="ii-data-sources.html#cb5-27" aria-hidden="true" tabindex="-1"></a>tot_dc_ll<span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;dc_L_L.csv&#39;</span>)</span></code></pre></div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="i-introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="v-results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/code.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/code.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

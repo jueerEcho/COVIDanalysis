@@ -1,9 +1,8 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "COVID-19 Analysis"
+author: "Wendou Mao, Wanxiao Hong, Yuzhao Pan"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
 # Introduction
-

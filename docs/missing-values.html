@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Missing values | YOUR TITLE HERE</title>
-  <meta name="description" content="Chapter 4 Missing values | YOUR TITLE HERE" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Chapter 4 Missing values | COVID-19</title>
+  <meta name="description" content="Chapter 4 Missing values | COVID-19" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Missing values | YOUR TITLE HERE" />
+  <meta property="og:title" content="Chapter 4 Missing values | COVID-19" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Missing values | YOUR TITLE HERE" />
+  <meta name="twitter:title" content="Chapter 4 Missing values | COVID-19" />
   
   
   
 
-<meta name="author" content="YOUR NAMES HERE" />
+<meta name="author" content="Brian Mao, Yuzhao Pan, Wanxiao Hong" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2021-04-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,8 @@
   
 <link rel="prev" href="data-transformation.html"/>
 <link rel="next" href="results.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -51,7 +51,13 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 
 
 
@@ -72,10 +78,31 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#data-of-cdc-covid-19-vaccinations-in-the-united-states"><i class="fa fa-check"></i><b>2.1</b> Data of CDC COVID-19 Vaccinations in the United States</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#data-of-cdc-covid-19-vaccine-distribution-allocations-by-jurisdiction"><i class="fa fa-check"></i><b>2.2</b> Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#data-of-cdc-covid-19-vaccinations-in-the-united-states-1"><i class="fa fa-check"></i><b>3.1</b> Data of CDC COVID-19 Vaccinations in the United States</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#data-of-cdc-covid-19-vaccine-distribution-allocations-by-jurisdiction-1"><i class="fa fa-check"></i><b>3.2</b> Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#data-of-cdc-covid-19-vaccinations-in-the-united-states-2"><i class="fa fa-check"></i><b>4.1</b> Data of CDC COVID-19 Vaccinations in the United States</a></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#data-of-cdc-covid-19-vaccine-distribution-allocations-by-jurisdiction-2"><i class="fa fa-check"></i><b>4.2</b> Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#covid-19-spread"><i class="fa fa-check"></i><b>5.1</b> COVID-19 Spread</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#data-analysis-on-covid-19-vaccination"><i class="fa fa-check"></i><b>5.2</b> Data Analysis on COVID-19 Vaccination</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#types-of-vaccine-allocations-analysis"><i class="fa fa-check"></i><b>5.2.1</b> 3 Types of Vaccine Allocations Analysis</a></li>
+<li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#correlation-between-vaccination-rate-and-different-groups"><i class="fa fa-check"></i><b>5.2.2</b> Correlation Between Vaccination Rate and Different Groups</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#level-of-medical-resourcesservices-accross-states"><i class="fa fa-check"></i><b>5.3</b> Level of Medical Resources/Services, accross states</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -89,7 +116,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR TITLE HERE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">COVID-19</a>
           </h1>
         </div>
 
@@ -99,7 +126,25 @@
             <section class="normal" id="section-">
 <div id="missing-values" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
+<div id="data-of-cdc-covid-19-vaccinations-in-the-united-states-2" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Data of CDC COVID-19 Vaccinations in the United States</h2>
+<p>Below is the plot mentioned in Sec 3.1 for the <code>vaccination_us</code> table:
+<img src="finalproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>After plotting the missing values graph we discovered that there are three states contains missing values.
+They are Bureau of Prisons, Dept of Defense and Veterans Health. Theses three values are not any states so we decided to remove these three records</p>
+<p><br /></p>
+<p>For the<code>case_death_clean_overtime</code> table, we plot the table by states to see if there is any missing value again.
+<img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+There is no missing values in this table (0 in the means there is no new case or new death for the date)</p>
+</div>
+<div id="data-of-cdc-covid-19-vaccine-distribution-allocations-by-jurisdiction-2" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction</h2>
+<p>Fortunately, the three data sets provided by CDC officials are all cleaned and don’t contain any missing values.
+For those jurisdictions that don’t give any vaccination at a certain period, the corresponding entry is default to 0.
+Therefore, we didn’t find any missing values regarding these tables.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-20-2.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-20-3.png" width="672" /></p>
 
+</div>
 </div>
             </section>
 

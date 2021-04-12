@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Results | YOUR TITLE HERE</title>
-  <meta name="description" content="Chapter 5 Results | YOUR TITLE HERE" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Chapter 5 Results | COVID-19</title>
+  <meta name="description" content="Chapter 5 Results | COVID-19" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Results | YOUR TITLE HERE" />
+  <meta property="og:title" content="Chapter 5 Results | COVID-19" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Results | YOUR TITLE HERE" />
+  <meta name="twitter:title" content="Chapter 5 Results | COVID-19" />
   
   
   
 
-<meta name="author" content="YOUR NAMES HERE" />
+<meta name="author" content="Brian Mao, Yuzhao Pan, Wanxiao Hong" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2021-04-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,8 @@
   
 <link rel="prev" href="missing-values.html"/>
 <link rel="next" href="interactive-component.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -51,7 +51,13 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 
 
 
@@ -72,10 +78,31 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#data-of-cdc-covid-19-vaccinations-in-the-united-states"><i class="fa fa-check"></i><b>2.1</b> Data of CDC COVID-19 Vaccinations in the United States</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#data-of-cdc-covid-19-vaccine-distribution-allocations-by-jurisdiction"><i class="fa fa-check"></i><b>2.2</b> Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#data-of-cdc-covid-19-vaccinations-in-the-united-states-1"><i class="fa fa-check"></i><b>3.1</b> Data of CDC COVID-19 Vaccinations in the United States</a></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#data-of-cdc-covid-19-vaccine-distribution-allocations-by-jurisdiction-1"><i class="fa fa-check"></i><b>3.2</b> Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#data-of-cdc-covid-19-vaccinations-in-the-united-states-2"><i class="fa fa-check"></i><b>4.1</b> Data of CDC COVID-19 Vaccinations in the United States</a></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#data-of-cdc-covid-19-vaccine-distribution-allocations-by-jurisdiction-2"><i class="fa fa-check"></i><b>4.2</b> Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#covid-19-spread"><i class="fa fa-check"></i><b>5.1</b> COVID-19 Spread</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#data-analysis-on-covid-19-vaccination"><i class="fa fa-check"></i><b>5.2</b> Data Analysis on COVID-19 Vaccination</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#types-of-vaccine-allocations-analysis"><i class="fa fa-check"></i><b>5.2.1</b> 3 Types of Vaccine Allocations Analysis</a></li>
+<li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#correlation-between-vaccination-rate-and-different-groups"><i class="fa fa-check"></i><b>5.2.2</b> Correlation Between Vaccination Rate and Different Groups</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#level-of-medical-resourcesservices-accross-states"><i class="fa fa-check"></i><b>5.3</b> Level of Medical Resources/Services, accross states</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -89,7 +116,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR TITLE HERE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">COVID-19</a>
           </h1>
         </div>
 
@@ -99,7 +126,86 @@
             <section class="normal" id="section-">
 <div id="results" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
+<div id="covid-19-spread" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> COVID-19 Spread</h2>
+<p>First things first, we want to get a general picture of COVID-19’s spread in US. Intuitively, the confirmed cases and death cases number of COVID-19 can reflect its spread most efficiently. So, to gain a direct view on these two data, we use heat map to plot out the number of cases confirmed and deaths by state on the US map.</p>
+<div id="htmlwidget-3438c892e21df156c0c2" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3438c892e21df156c0c2">{"x":{"visdat":{"74c5211f179a":["function () ","plotlyVisDat"]},"cur_data":"74c5211f179a","attrs":{"74c5211f179a":{"locationmode":"USA-states","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"locations":{},"z":{},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa"},"title":" <br /> Total number of covid confirmed by state","scene":{"zaxis":{"title":"tot_case"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"tot_case","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"locationmode":"USA-states","locations":["AK","AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","PR","RI","SC","SD","TN","TX","UT","VA","VT","WA","WI","WV","WY"],"z":[61401,516918,331098,844910,3582463,468988,316655,45112,96577,2046280,1065197,29259,353548,181836,1258736,691625,303227,429511,446737,617863,419055,52278,779974,527650,580347,306158,105142,922560,103974,211958,86125,930026,192595,305357,1915072,1026929,440142,167128,1045400,110022,139173,555650,118517,817022,2794483,387514,627605,20267,370017,639553,143733,56529],"type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)"}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b14f36ae4c6933b92686" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b14f36ae4c6933b92686">{"x":{"visdat":{"74c5469073":["function () ","plotlyVisDat"]},"cur_data":"74c5469073","attrs":{"74c5469073":{"locationmode":"USA-states","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"locations":{},"z":{},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa"},"title":" <br /> Total number of people died","scene":{"zaxis":{"title":"tot_death"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"tot_death","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"locationmode":"USA-states","locations":["AK","AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","PR","RI","SC","SD","TN","TX","UT","VA","VT","WA","WI","WV","WY"],"z":[309,10638,5648,16991,58534,6126,7923,1072,1566,33710,19212,464,5822,1972,23665,13075,4932,6171,10165,17189,8378,746,17282,6963,8508,7055,1466,12173,1468,2181,1249,24649,3953,5275,50452,18646,6670,2394,25200,2131,2629,9209,1938,11929,47749,2192,10401,229,5285,7341,2696,700],"type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)"}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>From the plots, we can see that some states a severely higher than others.</p>
+<p>Then, we plot out the number of cases and death over time to see how COVID-19 developed in the past year.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-23-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-23-2.png" width="672" /></p>
+</div>
+<div id="data-analysis-on-covid-19-vaccination" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Data Analysis on COVID-19 Vaccination</h2>
+<p>After gaining the general picture of COVID-19’s impact in United States, we look into the data of newly developed vaccines.</p>
+<p>There are 3 types of COVID vaccine currently available: <strong>Pfizer</strong>, <strong>Moderna</strong>, and <strong>Janssen</strong>. We choose to compare how different vaccines are distributed in US.</p>
+<p>We thought of picking the most widely-used vaccine Pfizer and analyze its trend. However, we soon discovered that some states use Pfizer more often compared to Other states. Therefore, analyzing Pfizer vaccine alone doesn’t give any insight about vaccine usage across the country. Only cross-comparison of the three vaccines can give a complete image of how vaccines are used.</p>
+<div id="types-of-vaccine-allocations-analysis" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> 3 Types of Vaccine Allocations Analysis</h3>
+<p>First, Let’s look at the most well-known Pfizer Vaccine:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>Pfizer vaccine is the first vaccine that was put to use (President Joe Biden also used this vaccine). From the graph <code>Pfizer Vaccine Allocations in the Top 8 States</code>, we can see that the trends of distribution of Pfizer Vaccine appear similarly in the top 8 states. We see an increase of doses after the week 02/15/2021. This is because we see a significant increase of vaccine production at that period. The distribution of Pfizer has been increasing until last week, where we see a drop in doses.</p>
+<p>Also, the weekly allocations to each state stays quite steadily in terms of the ranking. e.g. California always gets the largest amount of Pfizer vaccine.
+From the <code>Cumulative Number of Pfizer Vaccine Allocations, by State</code> table, we can easily see that there are barely any crossing line between each state.
+So there may exist a fixed ratio for the Pfizer vaccine distribution to each state.</p>
+<p>Next is the Moderna Vaccine:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+Moderna vaccine was put to use a week after Pfizer Vaccine. We see that the pattern is similar across six jurisdictions.
+The trend is also very steady, with an increase at the week 01/25/2021, and then maintain flat after 02/15/2021.</p>
+<p>There is still no crossing line between each state in the <code>Culumulative</code> graph, so the assumption of fixed ratio holds for Moderna, too.</p>
+<p>At last we look at Janssen Vaccine:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+Janssen Vaccine by Johnson&amp;Johnson was put to use late February 2021. We see a huge increase of Janssen vaccine after it was put to use.
+The advantage of this vaccine compared to the others is:
+Janssen vaccine is easy to store (at refrigerator temperature), and it only requires a single shot. Therefore, it is getting more and more welcomed in U.S.
+Despite its low overall-efficacy, Janssen is found to be protective against new COVID variants. This is another reason why it’s popular.</p>
+<p>And agian, there is no crossing line in the <code>Culumulative</code> graph. The assumption of fixed distribution ratio for each state holds for all three vaccines.</p>
+<p><br /></p>
+<p>We then plot the total distributions of the three vaccines across the country:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+We see that the distributions of the two traditional vaccines (Pfizer and Moderna) have been steadily growing, and the new vaccine Janssen has become more and more popular in the past month. By the end of last week, we can see that the three vaccines are somewhat equally popular across the country.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>Above is a plot showing the overall cumulative amounts of each vaccine that has been distributed since their release.
+We find that total amount of Pfizer has caught up Moderna and ranked first among the three vaccines in the past month.
+And even though that Janssen has become more and more popular, there is still a very large gap between it and the other two vaccines, in the perspective of total amount.</p>
+</div>
+<div id="correlation-between-vaccination-rate-and-different-groups" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Correlation Between Vaccination Rate and Different Groups</h3>
+<p>In the previous section, we analyzed the distribution of vaccine across the U.S states. Now we want to dig deeper into the data and find out how different groups (states, ethnicity or age) are doing.</p>
+<p><strong><em>What is the vaccination rate of each state?</em></strong></p>
+<p>We want to see which states are falling behind,
+so that we need to make more effort for the states that are less than 30% of vaccination rate from the graph</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-34-1.png" width="960" /></p>
+<p><strong><em>Who we should target to get vaccinated by ethnicity?</em></strong></p>
+<p>From the graph belowwe found that not a lot people from the age 0-49 are vaccinated. We should target them in the future.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><strong><em>Who we should target to get vaccinated by age group?</em></strong></p>
+<p>From the graph below, we found that only the people belong to white ethnicity group doing pretty good on vaccination.
+We need to make more effort on other ethnicity group.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+</div>
+</div>
+<div id="level-of-medical-resourcesservices-accross-states" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Level of Medical Resources/Services, accross states</h2>
+<p>Just as the plots for the 3 different vaccine’s cumulative allocations of each state.
+Now, we can easily derive the cumulative allocations of the 3 different vaccines in total, across past few months.</p>
+<p>From the plot below, we can see that “California”, “Texas”, “Florida”, “Ohio”, “Pennsylvania”, “New York”, “North Carolina” and “Illinois” receive the largest amount of vaccine allocations.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>So we may consider these 8 states to be the top states in terms of medical resources distribution. However, this result is derived from uncertain base units e.g. the different population in each state. Therefore, we choose to look back to the vaccination_us table and check the Doses Delivered per 100K people.</p>
+<p>With the same unit of 100K people, we find that:</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-41-1.png" width="768" /></p>
+<p>We get this very interesting result that none of our previous “Top Resources State” gets into the top ten states of this resources per 100K people plot.</p>
+<p>After analyzing the amount of resources each state get, we are also interested in how well they are utilizing these vaccines. So, we plot out a rate contrast figure of the dose administrated(green) vs. delivered(grey) per 100K people.</p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-42-1.png" width="960" /></p>
+<p>The plot shows that the level of vaccine utilization has almost no relationship to the amount of total resources that one state gets.</p>
+<p>And again, none of the top 8 allocation states appears in the top 10 ranking. The best one, New York State, only gets the 14th place. The state with great amount of vaccine distribution should reflect themselves on how to utilize the medical resources more efficiently.</p>
 
+</div>
 </div>
             </section>
 
