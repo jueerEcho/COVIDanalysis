@@ -1,1 +1,474 @@
 # Results
+
+## COVID-19 Spread
+
+First things first, we want to get a general picture of COVID-19's spread in US. Intuitively, the confirmed cases and death cases number of COVID-19 can reflect its spread most efficiently. So, to gain a direct view on these two data, we use heat map to plot out the number of cases confirmed and deaths by state on the US map. 
+
+```{r ,message=FALSE}
+case_plot <- plot_geo(tot_dc_ll,
+                      locationmode = 'USA-states') %>%
+  add_trace(locations = ~state,
+            z = ~tot_case) %>% 
+  layout(geo = list(scope = 'usa'),
+         title = ' \n Total number of covid confirmed by state')
+
+death_plot <- plot_geo(tot_dc_ll,
+                      locationmode = 'USA-states') %>%
+  add_trace(locations = ~state,
+            z = ~tot_death) %>% 
+  layout(geo = list(scope = 'usa'),
+         title = ' \n Total number of people died') 
+
+case_plot
+death_plot
+```
+
+From the plots, we can see that some states a severely higher than others.
+
+Then, we plot out the number of cases and death over time to see how COVID-19 developed in the past year.
+
+```{r}
+# Clean the data - removed daily new case and daily new death where the number is negative
+case_death_clean_overtime_new <- subset(case_death_clean_overtime_d, new_case > 0 )
+case_death_clean_overtime_new <- subset(case_death_clean_overtime_new, new_death > 0)
+case_death_clean_overtime_new$submission_date = as.Date(case_death_clean_overtime_new$submission_date)
+case_death_clean_overtime_new <- subset(case_death_clean_overtime_new, submission_date > 2021-01-22)
+
+p_daily_new <- ggplot(case_death_clean_overtime_new, aes(x=submission_date, y=new_case)) +
+  geom_line() + 
+  scale_x_date(date_labels =  "%Y %b %d")+
+  geom_line( color="#69b3a2")+
+  ggtitle("Daily new case")+
+  theme_minimal() +
+  theme(plot.title = element_text(size=30))+
+  xlab("")
+p_daily_death <- ggplot(case_death_clean_overtime_new, aes(x=submission_date, y=new_death)) +
+  geom_line() + 
+  scale_x_date(date_labels =  "%Y %b %d")+
+  ggtitle("Daily new death")+
+  theme_minimal() +
+  theme(plot.title = element_text(size=30))+
+  geom_line( color="#69b3a2")+
+  xlab("")
+
+p_daily_new
+p_daily_death
+```
+
+## Data Analysis on Vaccinations
+
+After gaining the general picture of COVID-19's impact in United States, we look into the data of newly developed vaccines. 
+
+There are 3 types of COVID vaccine currently available: **Pfizer**, **Moderna**, and **Janssen**. We choose to compare how different vaccines are distributed in US. 
+
+We thought of picking the most widely-used vaccine Pfizer and analyze its trend. However, we soon discovered that some states use Pfizer more often compared to Other states. Therefore, analyzing Pfizer vaccine alone doesn't give any insight about vaccine usage across the country. Only cross-comparison of the three vaccines can give a complete image of how vaccines are used.
+
+### 3 Types of Vaccine Allocations Analysis
+``` {r}
+cgroup_cols <- c(prismatic::clr_darken(paletteer_d("RColorBrewer::Set1"), 0.2)[1:length(alloc_top8_states)], "gray70")
+# scales::show_col(cgroup_cols)
+```
+
+First, Let's look at the most well-known Pfizer Vaccine:
+
+```{r}
+
+ggplot(data = new_pfizer, 
+       aes(x=Week_of_Allocations, y=First_Dose_Allocations, 
+           group = Jurisdiction, color = Jurisdiction
+  )) + theme_minimal() + 
+  scale_color_manual(values = cgroup_cols) +
+  scale_y_continuous(labels = comma) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  geom_line() + ggtitle("Pfizer Vaccine Allocations in the Top 8 States") 
+```
+
+``` {r}
+Pfizer_weekly_cum %>%
+  mutate(
+    end_label = ifelse(week_date==max(week_date), states, NA_character_)
+  ) %>% 
+  mutate(end_label = case_when(states %in% alloc_top8_states ~ end_label,
+                               TRUE ~ NA_character_), 
+         cgroup = case_when(states %in% alloc_top8_states ~ states, 
+                            TRUE ~ "ZZZOTHER")) %>% 
+  ggplot(aes(x = week_date, y = cum_dose_allocations, 
+         color = cgroup, label = end_label, 
+         group = states)) + 
+  geom_line(size = 0.3) +
+  geom_text_repel(nudge_x = 10, nudge_y = 1) +
+  scale_color_manual(values = cgroup_cols) +
+  scale_x_date(labels = date_format("%m/%d/%y"), breaks = "1 week") +
+  scale_y_continuous(labels = comma, breaks = 1000000*(1:10)) +
+  labs(x = "Week of Allocations", 
+       y = "Cumulative Number of Pfizer Vaccine", 
+       title = "Cumulative Number of Pfizer Vaccine Allocations, by State", 
+    caption = "data source from CDC") +
+  theme_minimal() +
+  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1)) 
+```
+
+Pfizer vaccine is the first vaccine that was put to use (President Joe Biden also used this vaccine). From the graph `Pfizer Vaccine Allocations in the Top 8 States`, we can see that the trends of distribution of Pfizer Vaccine appear similarly in the top 8 states. We see an increase of doses after the week 02/15/2021. This is because we see a significant increase of vaccine production at that period. The distribution of Pfizer has been increasing until last week, where we see a drop in doses.
+
+Also, the weekly allocations to each state stays quite steadily in terms of the ranking. e.g. California always gets the largest amount of Pfizer vaccine. 
+From the `Cumulative Number of Pfizer Vaccine Allocations, by State` table, we can easily see that there are barely any crossing line between each state. 
+So there may exist a fixed ratio for the Pfizer vaccine distribution to each state.
+
+
+Next is the Moderna Vaccine:
+
+```{r}
+ggplot(data = new_moderna, 
+       aes(x=Week_of_Allocations, y=First_Dose_Allocations, 
+           group = Jurisdiction, color = Jurisdiction
+  )) + theme_minimal() + 
+  scale_color_manual(values = cgroup_cols) +
+  scale_y_continuous(labels = comma) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) + geom_line() + ggtitle("Moderna Vaccine Allocations in the Top 8 States") 
+
+```
+
+```{r}
+#figures-side-2, fig.show="hold", out.width="50%"}
+Moderna_weekly_cum %>%
+  mutate(
+    end_label = ifelse(week_date==max(week_date), states, NA_character_)
+  ) %>% 
+  mutate(end_label = case_when(states %in% alloc_top8_states ~ end_label,
+                               TRUE ~ NA_character_), 
+         cgroup = case_when(states %in% alloc_top8_states ~ states, 
+                            TRUE ~ "ZZZOTHER")) %>% 
+  ggplot(aes(x = week_date, y = cum_dose_allocations, 
+         color = cgroup, label = end_label, 
+         group = states)) + 
+  geom_line(size = 0.3) +
+  geom_text_repel(nudge_x = 10, nudge_y = 1) +
+  scale_color_manual(values = cgroup_cols) +
+  scale_x_date(labels = date_format("%m/%d/%y"), breaks = "1 week") +
+  scale_y_continuous(labels = comma, breaks = 1000000*(1:10)) + 
+  labs(x = "Week of Allocations", 
+       y = "Cumulative Number of Moderna Vaccine", 
+       title = "Cumulative Number of Moderna Vaccine Allocations, by State", 
+    caption = "data source from CDC") +
+  theme_minimal() +
+  theme(
+    #panel.grid.minor = element_blank(),
+    legend.position = "none",
+    axis.text.x = element_text(angle = 90, hjust = 1)
+  ) 
+```
+Moderna vaccine was put to use a week after Pfizer Vaccine. We see that the pattern is similar across the top 8 states. 
+The trend is also very steady, with an increase at the week 01/25/2021, and then maintain flat after 02/15/2021.
+
+There is still no crossing line between each state in the `Culumulative` graph, so the assumption of fixed ratio holds for Moderna, too.
+
+
+At last we look at Janssen Vaccine:
+
+```{r}
+ggplot(data = new_janssen, 
+       aes(x=Week_of_Allocations, y=First_Dose_Allocations, 
+           group = Jurisdiction, color = Jurisdiction
+  )) + theme_minimal() + 
+  scale_color_manual(values = cgroup_cols) +
+  scale_y_continuous(labels = comma) +
+  #theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  geom_line() + ggtitle("Janssen Vaccine Allocations in the Top 8 States")  
+```
+
+``` {r}
+Janssen_weekly_cum %>%
+  mutate(
+    end_label = ifelse(week_date==max(week_date), states, NA_character_)
+  ) %>% 
+  mutate(end_label = case_when(states %in% alloc_top8_states ~ end_label,
+                               TRUE ~ NA_character_), 
+         cgroup = case_when(states %in% alloc_top8_states ~ states, 
+                            TRUE ~ "ZZZOTHER")) %>% 
+  ggplot(aes(x = week_date, y = cum_dose_allocations, 
+         color = cgroup, label = end_label, 
+         group = states)) + 
+  geom_line(size = 0.3) +
+  geom_text_repel(nudge_x = 3, nudge_y = 1) +
+  scale_x_date(labels = date_format("%m/%d/%y"), breaks = "1 week") +
+  scale_color_manual(values = cgroup_cols) +
+  scale_y_continuous(labels = comma) + 
+  scale_y_continuous(labels = comma, breaks = 200000*(1:10)) + 
+  labs(x = "Week of Allocations", 
+       y = "Cumulative Number of Janssen Vaccine", 
+       title = "Cumulative Number of Janssen Vaccine Allocations, by State", 
+    caption = "data source from CDC") +
+  theme_minimal() +
+  theme(legend.position = "none") 
+```
+Janssen Vaccine by Johnson&Johnson was put to use late February 2021. We see a huge increase of Janssen vaccine after it was put to use. 
+The advantage of this vaccine compared to the others is:
+Janssen vaccine is easy to store (at refrigerator temperature), and it only requires a single shot. Therefore, it is getting more and more welcomed in U.S.
+Despite its low overall-efficacy, Janssen is found to be protective against new COVID variants. This is another reason why it's popular.
+
+And agian, there is no crossing line in the `Culumulative` graph. The assumption of fixed distribution ratio for each state holds for all three vaccines.
+
+<br />
+
+We then plot the total distributions of the three vaccines across the country:
+```{r}
+pfizer_all <- alloc_Pfizer
+pfizer_all <- pfizer_all %>%
+  group_by(Week_of_Allocations) %>%
+  summarize(sums = sum(First_Dose_Allocations))
+
+pfizer_all$Week_of_Allocations = factor(pfizer_all$Week_of_Allocations, levels = pfizer_weeks)
+
+moderna_all <- alloc_Moderna
+moderna_all$Week_of_Allocations = factor(moderna_all$Week_of_Allocations, levels = moderna_weeks)
+
+moderna_all <- moderna_all %>%
+  group_by(Week_of_Allocations) %>%
+  summarize(sums = sum(First_Dose_Allocations))
+
+janssen_all <- alloc_Janssen
+janssen_all$Week_of_Allocations = factor(janssen_all$Week_of_Allocations, levels = janssen_weeks)
+
+janssen_all <- janssen_all %>%
+  group_by(Week_of_Allocations) %>%
+  summarize(sums = sum(First_Dose_Allocations))
+```
+
+```{r}
+ggplot() +
+  theme_minimal() + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + geom_line(data = pfizer_all,aes(x=Week_of_Allocations, y=sums, group=1, color = "black")) + geom_line(data = moderna_all, aes(x=Week_of_Allocations, y=sums, group=1, color = "red")) + geom_line(data = janssen_all, aes(x=Week_of_Allocations, y=sums, group=1 , color = "blue")) + ggtitle("Cross comparison of total vaccine distribution over U.S") + scale_color_identity(name = "Vaccine",
+                          breaks = c("black", "red", "blue"),
+                          labels = c("Pfizer", "Moderna", "Janssen"),
+                          guide = "legend")  
+
+```
+We see that the distributions of the two traditional vaccines (Pfizer and Moderna) have been steadily growing, and the new vaccine Janssen has become more and more popular in the past month. By the end of last week, we can see that the three vaccines are somewhat equally popular across the country. 
+
+```{r}
+Moderna_weekly <- Moderna_weekly_cum %>%
+  group_by(week_date)%>%
+  summarize(sums = sum(cum_dose_allocations))
+  
+Janssen_weekly <- Janssen_weekly_cum %>%
+  group_by(week_date) %>%
+  summarize(sums = sum(cum_dose_allocations))
+
+Pfizer_weekly <- Pfizer_weekly_cum %>%
+  group_by(week_date) %>%
+  summarize(sums = sum(cum_dose_allocations))
+
+ggplot() + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  geom_line(data = Moderna_weekly, aes(x=week_date, y=sums, group=1, color = "red")) + 
+  geom_line(data = Janssen_weekly, aes(x=week_date, y=sums, group=1, color = "blue")) + 
+  geom_line(data = Pfizer_weekly, aes(x=week_date, y=sums, group=1 , color = "black")) + 
+  scale_y_continuous(labels = comma) + 
+  scale_x_date(labels = date_format("%m/%d/%y"), breaks = "1 week") +
+  scale_color_identity(name = "Vaccine",
+                          breaks = c("black", "red", "blue"),
+                          labels = c("Pfizer", "Moderna", "Janssen"),
+                          guide = "legend") +
+  labs(x = "Week of Allocations", 
+       y = "Cumulative Number of Vaccine Allocations", 
+       title = "Cross comparison of total cummulativevaccine distribution over U.S", 
+    caption = "data source from CDC") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+
+```
+
+Above is a plot showing the overall cumulative amounts of each vaccine that has been distributed since their release. 
+We find that total amount of Pfizer has caught up Moderna and ranked first among the three vaccines in the past month. 
+And even though that Janssen has become more and more popular, there is still a very large gap between it and the other two vaccines, in the perspective of total amount.
+
+### Correlation Between Vaccination Rate and Different Groups
+In the previous section, we analyzed the distribution of vaccine across the U.S states. Now we want to dig deeper into the data and find out how different groups (states, ethnicity or age) are doing.
+
+***What is the vaccination rate of each state?***
+
+We want to see which states are falling behind, 
+so that we need to make more effort for the states that are less than 30% of vaccination rate from the graph
+
+```{r, fig.width = 10, fig.height = 12}
+vaccination_us_new <- subset(vaccination_us, Percent.of.Total.Pop.with.at.least.One.Dose.by.State.of.Residence > 0 )
+vaccination_us_new$State.Territory.Federal.Entity <- factor(vaccination_us_new$State.Territory.Federal.Entity, levels = vaccination_us_new$State.Territory.Federal.Entity[order(vaccination_us_new$Percent.of.Total.Pop.with.at.least.One.Dose.by.State.of.Residence)])
+
+p<-ggplot(data=vaccination_us_new, 
+      aes(x=Percent.of.Total.Pop.with.at.least.One.Dose.by.State.of.Residence,
+        y=State.Territory.Federal.Entity, 
+        fill = 'Percent', width = 0.8)
+      ) + theme_minimal() +
+  geom_bar(stat="identity", color="#69b3a2")+
+  ggtitle("Vaccination rate by states")+
+  theme(plot.title = element_text(size=30))+
+  geom_text(aes(label = Percent.of.Total.Pop.with.at.least.One.Dose.by.State.of.Residence), vjust = 0.5, hjust = -0.1)
+p  
+```
+
+***Who we should target to get vaccinated by age group?***
+
+From the graph below we found that not a lot people from the age 0-49 are vaccinated. We should target them in the future.
+
+```{r}
+vaccination_age$Fully_Vaccinated[vaccination_age$Fully_Vaccinated == 'No'] <- '1 dose'
+vaccination_age$Fully_Vaccinated[vaccination_age$Fully_Vaccinated == 'Yes'] <- 'Fully Vaccinated'
+
+p<-ggplot(
+  data=vaccination_age, aes(x=Age.Group, y=Percentage)
+  ) + theme_minimal() +
+  geom_bar(stat="identity", fill="steelblue")+
+  geom_text(aes(label =  Percentage), vjust = 0.5, hjust = -0.1)+
+  scale_y_continuous(limits = c(0, 30)) +
+  ggtitle("Vaccination rate by age group")+
+  theme(plot.title = element_text(size=20))+
+  facet_wrap(~Fully_Vaccinated)
+p + coord_flip()
+```
+
+***Who we should target to get vaccinated by ethnicity?***
+
+From the graph below, we can see that most of the ethnicity group stay in the same stage of getting vaccination, except the `Multiple/Other` group. Besides, `American Indian/Alaska Native` and `White` are doing slightly better than other groups.
+
+Yet, we would put a question mark on `Multiple/Other` group's outstanding percentage of vaccination rate, as we think this may be due to their small base (less total number of people) and the difficulty of collecting data from non-specified group of people.
+
+```{r}
+race_vac$Fully_Vaccinated[race_vac$Fully_Vaccinated == 'No'] <- '1 dose'
+race_vac$Fully_Vaccinated[race_vac$Fully_Vaccinated == 'Yes'] <- 'Fully Vaccinated'
+
+p<-ggplot(
+  data=race_vac, aes(x=Race.Ethnicity, y=percent_vac)
+  ) + theme_minimal() +
+  geom_bar(stat="identity", fill="steelblue")+
+  geom_text(aes(label =  scales::percent(percent_vac, 1)), vjust = 0.5, hjust = -0.1)+
+  scale_y_continuous(limits = c(0, 1)) +
+  ggtitle("Vaccination rate by race")+
+  theme(plot.title = element_text(size=15))+
+  facet_wrap(~Fully_Vaccinated)
+p + coord_flip()
+```
+
+
+## Level of Medical Resources/Services, accross states
+Just as the plots for the 3 different vaccine's cumulative allocations of each state.
+Now, we can easily derive the cumulative allocations of the 3 different vaccines in total, across past few months.
+
+From the plot below, we can see that *California*, *Texas*, *Florida*, *Ohio*, *Pennsylvania*, *New York*, *North Carolina* and *Illinois* receive the largest amount of vaccine allocations.
+
+```{r}
+three_vaccines_alloc <- merge(Pfizer_weekly_cum,
+  merge(Moderna_weekly_cum, Janssen_weekly_cum, by = c("states", "week_date"), all.x = TRUE),
+  by = c("states", "week_date"), all.x = TRUE) %>% 
+  # group_by(Jurisdiction) %>%
+  mutate(
+    cum_allocations = cum_dose_allocations + 
+      ifelse(is.na(cum_dose_allocations.x), 0, cum_dose_allocations.x) + 
+      ifelse(is.na(cum_dose_allocations.y), 0, cum_dose_allocations.y)
+  )
+```
+
+``` {r}
+three_vaccines_alloc %>%
+  mutate(
+    end_label = ifelse(week_date==max(week_date), states, NA_character_)
+  ) %>% 
+  mutate(end_label = case_when(states %in% alloc_top8_states ~ end_label,
+                               TRUE ~ NA_character_), 
+         cgroup = case_when(states %in% alloc_top8_states ~ states, 
+                            TRUE ~ "ZZZOTHER")) %>% 
+  ggplot(aes(x = week_date, y = cum_allocations, 
+         color = cgroup, label = end_label, 
+         group = states)) + 
+  geom_line(size = 0.3) +
+  geom_text_repel(nudge_x = 2, nudge_y = 0.1, segment.color = NA) +
+  scale_color_manual(values = cgroup_cols) +
+    scale_x_date(labels = date_format("%m/%d/%y"), breaks = "1 week") +
+  scale_y_continuous(labels = comma, breaks = 2000000*(1:10)) + 
+  labs(x = "Week of Allocations", 
+       y = "Cumulative Number of all Vaccines, by States", 
+       title = "Cumulative Number of all Vaccine Allocations", 
+    caption = "data source from CDC") +
+  theme_minimal() +
+  theme(legend.position = "none", axis.text.x = element_text(angle = 90, hjust = 1)) 
+```
+
+So we may consider these 8 states to be the top states in terms of medical resources distribution. 
+This allocation preference echoes with the heat map graphs of **Cases Confirmed and Deaths** by states we plotted above in Sec 5.1. We can see that the colors of the top 8 states' corresponding area in the map are brighter than the rest part. For instance, `California` and `Texas`, which rank first and second place in the vaccine distribution allocations, have brightest color in the map graphs too.
+Thus, we may conclude that U.S. distributed the vaccines according to the severity of the pandemic in each state.
+
+However, this result may also be derived from uncertain base units e.g. the different population in each state. Therefore, we choose to look back to the vaccination_us table and check the Doses Delivered per 100K people.
+
+With the same unit of 100K people, we find that:
+
+```{r}
+vaccination_us <- read.csv(file = 'Vaccination_us_clean.csv')
+
+```
+```{r}
+vaccination_del_adm_per_hundredK = select(vaccination_us, 1,3, 6)
+
+vaccination_del_adm_per_hundredK <- vaccination_del_adm_per_hundredK %>% 
+  rename(
+    state = State.Territory.Federal.Entity,
+    delivered = Doses.Delivered.per.100K,
+    admined = Doses.Administered.per.100k.by.State.where.Administered
+  ) %>%
+  filter(
+    state != "Bureau of Prisons", 
+    state != "Dept of Defense", 
+    state != "Veterans Health"
+  ) %>%
+  mutate(percent_usage = label_percent(accuracy=0.01)(admined/delivered)) 
+```
+
+```{r, fig.width = 8, fig.height = 11}
+vaccination_del_adm_per_hundredK %>% 
+  ggplot(aes(x=reorder(state, delivered), y=delivered)) +
+  geom_bar( stat='identity', position='identity', 
+           alpha=.9, fill='#417dc1', color='lightblue4', width=0.5) +
+  geom_text(
+    aes(y= delivered, label=delivered), position = position_dodge(0.9),
+    vjust = 0.5, hjust = -0.1, size = 2.5) + 
+  scale_y_continuous(limits = c(0,130000), labels = comma) +
+  coord_flip() +
+  labs(x = "States", 
+       y = "Doses Delivered per 100K people", 
+       title = "States with Top Vaccine Resources", 
+       subtitle = "with fixed unit - per 100K people",
+    caption = "data source from CDC") +
+  theme_minimal() +
+  theme(plot.title = element_text(size=15))
+
+```
+
+We get this very interesting result that none of our previous "Top Resources State" gets into the top ten states of this resources per 100K people plot.
+
+After analyzing the amount of resources each state get, we are also interested in how well they are utilizing these vaccines. So, we plot out a rate contrast figure of the dose administrated(green) vs. delivered(grey) per 100K people.
+
+```{r, fig.width = 10, fig.height = 15}
+vaccination_del_adm_per_hundredK$state <- factor(
+  vaccination_del_adm_per_hundredK$state, 
+  levels=vaccination_del_adm_per_hundredK$state[
+    order(vaccination_del_adm_per_hundredK$percent_usage)], 
+  ordered=TRUE)
+
+vaccination_del_adm_per_hundredK %>% 
+  ggplot(aes(x=state)) +
+  geom_bar(aes(y=admined), stat='identity', position='identity', 
+           alpha=.8, fill='#bfee90', color='lightgreen', width=1) +
+  geom_bar(aes(y=delivered), stat='identity', position='identity', 
+           alpha=.3, fill='grey', color='lightblue4', width=0.95) +
+  geom_text(aes(y= admined, label=percent_usage), vjust=0.5) + 
+  coord_flip() +
+  labs(x = "States", 
+       y = "Doses Delivered/Administered per 100k people", 
+       title = "Rate Contrast of Administered/Delivered Vaccine over U.S", 
+    caption = "data source from CDC") +
+  theme_minimal() +
+  theme(plot.title = element_text(size=20))
+
+
+```
+
+The plot shows that the level of vaccine utilization has almost no relationship to the amount of total resources that one state gets.
+
+And again, none of the top 8 allocation states appears in the top 10 ranking. The best one, New York State, only gets the 14th place. The state with great amount of vaccine distribution should reflect themselves on how to utilize the medical resources more efficiently.
+

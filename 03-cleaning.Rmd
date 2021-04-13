@@ -1,1 +1,189 @@
 # Data transformation
+
+## Data of CDC COVID-19 Vaccinations in the United States
+
+In the `vaccination_us table` we are only interested in the colums -(State/Territory/Federal Entity, Total Doses Delivered, People with at least One Dose by State of Residence, Percent of Total Pop with at least One Dose by State of Residence, People Fully Vaccinated by State of Residence, Percent of Total Pop Fully Vaccinated by State of Residence, Percent of Total Pop with 1+ Doses by State of Residence, Percent of Total Pop with 2 Doses by State of Residence), hence we need to subset our data.
+
+```{r}
+vaccination_us_d = select(vaccination_us, 1,2,9,10,13,14,34,37)
+
+```
+
+After plotting the missing values graph (please see the graph in Sec 4.1), we discovered that there are three states contains missing values.
+They are Bureau of Prisons, Dept of Defense and Veterans Health. theses three values are not any states so we decided to remove these three records.
+
+```{r}
+vaccination_us_f <- vaccination_us_d[
+  !vaccination_us_d$State.Territory.Federal.Entity == "Bureau of Prisons" & 
+  !vaccination_us_d$State.Territory.Federal.Entity == "Dept of Defense" &
+  !vaccination_us_d$State.Territory.Federal.Entity == "Veterans Health", ]
+```
+
+The second table is total cases and death by states since Jan 22nd 2020 in the `case_death_clean_overtime` table we are only interested in the colums -(submission_date,	state,	tot_cases, new_case, tot_death, new_death), hence we need to subset my data) hence we need to subset our data.
+
+```{r}
+case_death_clean_overtime_d = select(case_death_clean_overtime, 1,2,3,6,8,11)
+```
+
+Furthermore, submission date is in string format. we changed it to date type.
+Also, remove daily new case and daily new death where the number is negative.
+
+```{r}
+case_death_clean_overtime_d$submission_date <-as.Date(case_death_clean_overtime_d$submission_date, format = "%m/%d/%Y")
+```
+
+In order to see total death and cases by state we need to aggregate values by states.
+
+Download longitude and latidue values for each state then merge it to our data.
+
+```{r}
+#library(plyr)
+tot_dc <-plyr::ddply(case_death_clean_overtime_d, "state", summarize, tot_case = max(tot_cases), tot_death = max(tot_death) )
+
+tot_dc_ll<- read.csv(file = 'dc_L_L.csv')
+```
+
+## Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction
+For all 3 vaccines, we only use the count of first dose as the count for the vaccine distribution. The reasons are:
+
+  1. All 1st dose vaccine takers will take the second dose in the future (except for very rare cases where a person have extreme side effects or other excuses for not taking the second dose).
+  2. Janssen vaccine is a single-dose vaccine, so in order to be consistent, we only compare the first dose of each vaccine.
+  
+In the original data, there are a few mismatch between the number of 1st dose and the second's. But fortunately, none of these mismatch is from the main 50 U.S states, so we removed all the states with inconsistent numbers.
+
+Moreover, as data on the official CDC website updates daily. We pick April 7 to be the end-date in order to maintain consistency. In another word, we are analyzing vaccine distribution from its start week (varies for different vaccine) to the week of 04/05/2021 for 3 different vaccines. Therefore, we exclude rows with `Week_of_Allocations == 4/12/2021`
+
+```{r}
+alloc_Moderna <- subset(alloc_Moderna_org %>% 
+  group_by(Jurisdiction) %>%
+  filter(
+    !Jurisdiction %in% Jurisdiction[First_Dose_Allocations != Second_Dose_Allocations ],
+    Week_of_Allocations != "04/12/2021"
+  ) %>% 
+  ungroup()
+    , select = -c(Second_Dose_Allocations))
+
+alloc_Janssen <- alloc_Janssen_org %>% 
+  group_by(Jurisdiction) %>%
+  filter(
+    Jurisdiction %in% alloc_Moderna$Jurisdiction,
+    Week_of_Allocations != "04/12/2021"
+  ) %>%
+  ungroup()
+
+alloc_Pfizer <- subset(alloc_Pfizer_org %>% 
+  group_by(Jurisdiction) %>%
+  filter(
+    !Jurisdiction %in% Jurisdiction[First_Dose_Allocations != Second_Dose_Allocations ],
+    Week_of_Allocations != "04/12/2021"
+  ) %>%
+  ungroup()
+    , select = -c(Second_Dose_Allocations))
+
+```
+
+As we are also interested in the cumulative allocations since the time when data has been collected, we add one more cumulative value column to the data set.
+
+One Data Example - the Moderna vaccine allocations:
+```{r}
+Moderna_weekly_cum <- alloc_Moderna %>% 
+  group_by(Jurisdiction) %>%
+  rename(
+    states = Jurisdiction,
+    dose_allocations = First_Dose_Allocations,
+    week_date = Week_of_Allocations
+  ) %>%
+  mutate(
+    week_date = lubridate::mdy(week_date)
+  ) %>%
+  arrange(week_date) %>%
+  mutate(cum_dose_allocations = cumsum(dose_allocations)) %>%
+  ungroup()
+
+Moderna_weekly_cum
+
+Janssen_weekly_cum <- alloc_Janssen %>% 
+  group_by(Jurisdiction) %>%
+  rename(
+    states = Jurisdiction,
+    dose_allocations = First_Dose_Allocations,
+    week_date = Week_of_Allocations
+  ) %>%
+  mutate(
+    week_date = lubridate::mdy(week_date)
+  ) %>%
+  arrange(week_date) %>%
+  mutate(cum_dose_allocations = cumsum(dose_allocations)) %>%
+  ungroup()
+
+Pfizer_weekly_cum <- alloc_Pfizer %>% 
+  group_by(Jurisdiction) %>%
+  rename(
+    states = Jurisdiction,
+    dose_allocations = First_Dose_Allocations,
+    week_date = Week_of_Allocations
+  ) %>%
+  mutate(
+    week_date = lubridate::mdy(week_date)
+  ) %>%
+  arrange(week_date) %>%
+  mutate(cum_dose_allocations = cumsum(dose_allocations)) %>%
+  ungroup()
+
+```
+
+From the cumulative allocations column, we can know which states have the top vaccine distribution allocations for each type of vaccines. And very interestingly, we find that the states with top vaccine distribution allocations are the same for all 3 vaccines.
+
+Therefore, all considering that seeing a graph of a vaccine's distribution in all states would be time-consuming and untidy, we highlight the top eight states out of all U.S. states/territories for later analyzing:
+
+```{r}
+Moderna_alloc_top8 <- Moderna_weekly_cum %>%
+  group_by(states) %>%
+  top_n(1, week_date) %>%
+  ungroup() %>% 
+  arrange(desc(cum_dose_allocations)) %>%
+  top_n(8, cum_dose_allocations) %>%
+  pull(states)
+
+Janssen_alloc_top8 <- Janssen_weekly_cum %>%
+  group_by(states) %>%
+  top_n(1, week_date) %>%
+  ungroup() %>% 
+  arrange(desc(cum_dose_allocations)) %>%
+  top_n(8, cum_dose_allocations) %>%
+  pull(states)
+
+Pfizer_alloc_top8 <- Pfizer_weekly_cum %>%
+  group_by(states) %>%
+  top_n(1, week_date) %>%
+  ungroup() %>% 
+  arrange(desc(cum_dose_allocations)) %>%
+  top_n(8, cum_dose_allocations) %>%
+  pull(states)
+
+ans <- identical(Moderna_alloc_top8, Janssen_alloc_top8) & identical(Moderna_alloc_top8, Pfizer_alloc_top8)
+cat("Are states with top allocations identical?", ans)
+alloc_top8_states <- Moderna_alloc_top8
+alloc_top8_states
+```
+
+```{r}
+city <- alloc_top8_states
+new_pfizer <- subset(alloc_Pfizer, Jurisdiction %in% city )
+new_moderna <- subset(alloc_Moderna, Jurisdiction %in% city )
+new_janssen <- subset(alloc_Janssen, Jurisdiction %in% city)
+```
+
+```{r}
+pfizer_weeks <- unique(new_pfizer$Week_of_Allocations)
+pfizer_weeks <- rev(pfizer_weeks)
+new_pfizer$Week_of_Allocations = factor(new_pfizer$Week_of_Allocations, levels = pfizer_weeks)
+
+moderna_weeks <- unique(new_moderna$Week_of_Allocations)
+moderna_weeks <- rev(moderna_weeks)
+new_moderna$Week_of_Allocations = factor(new_moderna$Week_of_Allocations, levels = moderna_weeks)
+
+janssen_weeks <- unique(new_janssen$Week_of_Allocations)
+janssen_weeks <- rev(janssen_weeks)
+new_janssen$Week_of_Allocations = factor(new_janssen$Week_of_Allocations, levels = janssen_weeks)
+```

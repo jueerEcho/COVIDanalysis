@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Data transformation | COVID-19</title>
-  <meta name="description" content="Chapter 3 Data transformation | COVID-19" />
+  <title>Chapter 3 Data transformation | COVID-19 Analysis</title>
+  <meta name="description" content="Chapter 3 Data transformation | COVID-19 Analysis" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Data transformation | COVID-19" />
+  <meta property="og:title" content="Chapter 3 Data transformation | COVID-19 Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Data transformation | COVID-19" />
+  <meta name="twitter:title" content="Chapter 3 Data transformation | COVID-19 Analysis" />
   
   
   
@@ -74,7 +74,7 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">COVID-19 Analysis</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
@@ -96,7 +96,7 @@
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#covid-19-spread"><i class="fa fa-check"></i><b>5.1</b> COVID-19 Spread</a></li>
-<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#data-analysis-on-covid-19-vaccination"><i class="fa fa-check"></i><b>5.2</b> Data Analysis on COVID-19 Vaccination</a>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#data-analysis-on-vaccinations"><i class="fa fa-check"></i><b>5.2</b> Data Analysis on Vaccinations</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#types-of-vaccine-allocations-analysis"><i class="fa fa-check"></i><b>5.2.1</b> 3 Types of Vaccine Allocations Analysis</a></li>
 <li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#correlation-between-vaccination-rate-and-different-groups"><i class="fa fa-check"></i><b>5.2.2</b> Correlation Between Vaccination Rate and Different Groups</a></li>
@@ -116,7 +116,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">COVID-19</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">COVID-19 Analysis</a>
           </h1>
         </div>
 
@@ -145,6 +145,7 @@ Also, remove daily new case and daily new death where the number is negative.</p
 <li>Janssen vaccine is a single-dose vaccine, so in order to be consistent, we only compare the first dose of each vaccine.</li>
 </ol>
 <p>In the original data, there are a few mismatch between the number of 1st dose and the second’s. But fortunately, none of these mismatch is from the main 50 U.S states, so we removed all the states with inconsistent numbers.</p>
+<p>Moreover, as data on the official CDC website updates daily. We pick April 7 to be the end-date in order to maintain consistency. In another word, we are analyzing vaccine distribution from its start week (varies for different vaccine) to the week of 04/05/2021 for 3 different vaccines. Therefore, we exclude rows with <code>Week_of_Allocations == 4/12/2021</code></p>
 <p>As we are also interested in the cumulative allocations since the time when data has been collected, we add one more cumulative value column to the data set.</p>
 <p>One Data Example - the Moderna vaccine allocations:</p>
 <pre><code>## # A tibble: 896 x 4

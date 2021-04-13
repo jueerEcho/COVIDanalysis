@@ -1,2 +1,73 @@
 # Data sources
 
+```{r}
+library(dplyr)
+library(readr)
+library(tibble)
+library(tidyr)
+library(ggplot2)
+library(ggrepel)
+library(shadowtext)
+library(paletteer)
+library(scales)
+library(naniar)
+library(plotly)
+```
+
+## Data of CDC COVID-19 Vaccinations in the United States
+Data is collected from https://covid.cdc.gov/covid-data-tracker/#vaccinations
+
+Download three csv file for case death overtime, vaccination rate in the us by states, and demographic data for vaccination.
+
+```{r}
+#import iles
+case_death_clean_overtime <- read.csv(file = 'Cases_Deaths_clean.csv')
+vaccination_us <- read.csv(file = 'Vaccination_us_clean.csv')
+vaccination_age <- read.csv(file = 'vaccination_by_age.csv')
+vaccination_race <- read.csv(file = 'Vaccination_Ethnicity.csv')
+race_vac <- read.csv(file = 'race_vac.csv')
+```
+
+Here are some basic information about the data sets: types of variables, number of records, etc.
+
+Cases_Deaths_clean.csv:
+```{r}
+glimpse(case_death_clean_overtime)
+```
+
+From the glimpse to the data sets, the problems for the data sets are missing values, not in the desired format, lack of longitude and latitude information for a map plot.
+
+## Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction
+https://data.cdc.gov/Vaccinations/COVID-19-Vaccine-Distribution-Allocations-by-Juris/saz5-9hgg
+
+https://data.cdc.gov/Vaccinations/COVID-19-Vaccine-Distribution-Allocations-by-Juris/w9zu-fywh
+
+https://data.cdc.gov/Vaccinations/COVID-19-Vaccine-Distribution-Allocations-by-Juris/b7pe-5nws
+
+There are many data sources regarding COVID vaccination. This is the data given by official CDC department. The reason we pick this data source rather than others is that CDC is the most authoritative agency regarding COVID vaccine distribution.
+
+There are 3 types of COVID vaccine currently available: Pfizer, Moderna, and Janssen. We choose to compare how different vaccines are distributed in US. We thought of picking the most widely-used vaccine Pfizer and analyze its trend. However, we soon discovered that some states use Pfizer more often compared to Other states. Therefore, analyzing Pfizer vaccine alone doesn't give any insight about vaccine usage across the country. Only cross-comparison of the three vaccines can give a complete image of how vaccines are used.
+
+```{r}
+alloc_Moderna_org <- read_csv("./COVID-19_Vaccine_Distribution_Allocations_by_Jurisdiction_-_Moderna.csv")
+alloc_Janssen_org <- read_csv("./COVID-19_Vaccine_Distribution_Allocations_by_Jurisdiction_-_Janssen.csv")
+alloc_Pfizer_org <- read_csv("./COVID-19_Vaccine_Distribution_Allocations_by_Jurisdiction_-_Pfizer.csv")
+```
+
+Some basic information about the data sets are provided below:
+
+COVID-19_Vaccine_Distribution_Allocations_by_Jurisdiction_-_Moderna.csv:
+```{r}
+glimpse(alloc_Moderna_org)
+```
+COVID-19_Vaccine_Distribution_Allocations_by_Jurisdiction_-_Janssen.csv:
+```{r}
+glimpse(alloc_Janssen_org)
+```
+COVID-19_Vaccine_Distribution_Allocations_by_Jurisdiction_-_Pfizer.csv:
+```{r}
+glimpse(alloc_Pfizer_org)
+```
+
+After checking the data set, we find that though the data sets have no missing values, there exist some inconsistency in the number of first and second dose allocations for a few states.
+

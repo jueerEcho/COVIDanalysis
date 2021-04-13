@@ -1,1 +1,33 @@
 # Missing values
+
+## Data of CDC COVID-19 Vaccinations in the United States
+
+Below is the plot mentioned in Sec 3.1 for the `vaccination_us` table:
+```{r}
+gg_miss_case(vaccination_us_d, facet = vaccination_us_d$State.Territory.Federal.Entity)
+```
+
+After plotting the missing values graph we discovered that there are three states contains missing values.
+They are Bureau of Prisons, Dept of Defense and Veterans Health. Theses three values are not any states so we decided to remove these three records
+
+<br />
+
+For the` case_death_clean_overtime` table, we plot the table by states to see if there is any missing value again.
+```{r}
+gg_miss_case(case_death_clean_overtime_d, facet = case_death_clean_overtime_d$state)
+```
+There is no missing values in this table (0 in the means there is no new case or new death for the date)
+
+## Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction
+Fortunately, the three data sets provided by CDC officials are all cleaned and don't contain any missing values.
+For those jurisdictions that don't give any vaccination at a certain period, the corresponding entry is default to 0.
+Therefore, we didn't find any missing values regarding these tables.
+
+```{r}
+gg_miss_case(alloc_Moderna_org, facet = alloc_Moderna_org$Jurisdiction) +
+  ggtitle("Moderna Missing Case")
+gg_miss_case(alloc_Janssen_org, facet = alloc_Janssen_org$Jurisdiction) +
+  ggtitle("Janssen Missing Case")
+gg_miss_case(alloc_Pfizer_org, facet = alloc_Pfizer_org$Jurisdiction) +
+  ggtitle("Pfizer Missing Case")
+```

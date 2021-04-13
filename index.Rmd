@@ -1,8 +1,25 @@
 --- 
 title: "COVID-19 Analysis"
-author: "Wendou Mao, Wanxiao Hong, Yuzhao Pan"
+author: "Brian Mao, Yuzhao Pan, Wanxiao Hong"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
 # Introduction
+
+At the end of 2019, the first COVID-19 case was discovered. COVID-19 soon became the most overwhelming topic in year 2020. Everyone's life was severely impacted by the spread of COVID-19. In this project, our goal is to analyze different aspects of this pandemic: its start, its spread, and most importantly, its ending, which is the vaccination.
+
+In the following sections, we will discuss:
+How we collect our data
+How we process our data
+The results of our analysis
+
+We will mainly explore on the following questions:
+
+    1. What is trend of COVID-19 cases and deaths since the start of 2020?
+    2. How are the three major vaccines distributed across United States?
+    3. Which states, ethnicity, or age group are falling behind regarding vaccination?
+    4. How well does each state utilize the medical resources/services they have?
+
+Throughout the project we will try to use graph and analysis tp answer the questions above. 
+

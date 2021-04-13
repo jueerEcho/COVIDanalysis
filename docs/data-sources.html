@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Data sources | COVID-19</title>
-  <meta name="description" content="Chapter 2 Data sources | COVID-19" />
+  <title>Chapter 2 Data sources | COVID-19 Analysis</title>
+  <meta name="description" content="Chapter 2 Data sources | COVID-19 Analysis" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Data sources | COVID-19" />
+  <meta property="og:title" content="Chapter 2 Data sources | COVID-19 Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Data sources | COVID-19" />
+  <meta name="twitter:title" content="Chapter 2 Data sources | COVID-19 Analysis" />
   
   
   
@@ -74,7 +74,7 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">COVID-19 Analysis</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
@@ -96,7 +96,7 @@
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#covid-19-spread"><i class="fa fa-check"></i><b>5.1</b> COVID-19 Spread</a></li>
-<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#data-analysis-on-covid-19-vaccination"><i class="fa fa-check"></i><b>5.2</b> Data Analysis on COVID-19 Vaccination</a>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#data-analysis-on-vaccinations"><i class="fa fa-check"></i><b>5.2</b> Data Analysis on Vaccinations</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#types-of-vaccine-allocations-analysis"><i class="fa fa-check"></i><b>5.2.1</b> 3 Types of Vaccine Allocations Analysis</a></li>
 <li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#correlation-between-vaccination-rate-and-different-groups"><i class="fa fa-check"></i><b>5.2.2</b> Correlation Between Vaccination Rate and Different Groups</a></li>
@@ -116,7 +116,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">COVID-19</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">COVID-19 Analysis</a>
           </h1>
         </div>
 
@@ -130,7 +130,26 @@
 <h2><span class="header-section-number">2.1</span> Data of CDC COVID-19 Vaccinations in the United States</h2>
 <p>Data is collected from <a href="https://covid.cdc.gov/covid-data-tracker/#vaccinations" class="uri">https://covid.cdc.gov/covid-data-tracker/#vaccinations</a></p>
 <p>Download three csv file for case death overtime, vaccination rate in the us by states, and demographic data for vaccination.</p>
-<p>The problems for the data sets are missing values, not in the desired format, lack of longitude and latitude information for a map plot.</p>
+<p>Here are some basic information about the data sets: types of variables, number of records, etc.</p>
+<p>Cases_Deaths_clean.csv:</p>
+<pre><code>## Rows: 26,400
+## Columns: 15
+## $ submission_date &lt;chr&gt; &quot;12/08/2020&quot;, &quot;01/01/2021&quot;, &quot;04/30/2020&quot;, &quot;02/26/2020&quot;…
+## $ state           &lt;chr&gt; &quot;NM&quot;, &quot;FL&quot;, &quot;IA&quot;, &quot;UT&quot;, &quot;GA&quot;, &quot;WV&quot;, &quot;NY&quot;, &quot;GA&quot;, &quot;TN&quot;, …
+## $ tot_cases       &lt;int&gt; 109947, 1300528, 7145, 0, 2, 1224, 346492, 28196, 1439…
+## $ conf_cases      &lt;int&gt; NA, NA, NA, NA, NA, 1224, NA, 28182, 141000, NA, NA, 1…
+## $ prob_cases      &lt;int&gt; NA, NA, NA, NA, NA, 0, NA, 14, 2937, NA, NA, 9896, 839…
+## $ new_case        &lt;int&gt; 0, 0, 302, 0, -5, 29, 5775, 602, 1854, 0, 0, 827, 6182…
+## $ pnew_case       &lt;int&gt; 0, 6063, 0, NA, NA, 0, 0, 1, 38, 0, 0, 0, 1473, 705, 2…
+## $ tot_death       &lt;int&gt; 1756, 21673, 162, 0, 0, 50, 10117, 1258, 1567, 0, 0, 9…
+## $ conf_death      &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, 1258, 1527, NA, NA, 9532, …
+## $ prob_death      &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, 0, 40, NA, NA, 208, 4971, …
+## $ new_death       &lt;int&gt; 0, 0, 14, 0, 0, 0, 56, 47, 4, 0, 0, 15, 93, 10, 1, 44,…
+## $ pnew_death      &lt;int&gt; 0, 7, 0, NA, NA, 0, 0, 0, 0, 0, 0, 0, 26, 2, 0, 10, NA…
+## $ created_at      &lt;chr&gt; &quot;12/09/2020 02:45:40 PM&quot;, &quot;01/02/2021 02:50:51 PM&quot;, &quot;0…
+## $ consent_cases   &lt;chr&gt; &quot;N/A&quot;, &quot;Not agree&quot;, &quot;Not agree&quot;, &quot;Agree&quot;, &quot;Agree&quot;, &quot;Ag…
+## $ consent_deaths  &lt;chr&gt; &quot;Not agree&quot;, &quot;Not agree&quot;, &quot;Not agree&quot;, &quot;Agree&quot;, &quot;Agree…</code></pre>
+<p>From the glimpse to the data sets, the problems for the data sets are missing values, not in the desired format, lack of longitude and latitude information for a map plot.</p>
 </div>
 <div id="data-of-cdc-covid-19-vaccine-distribution-allocations-by-jurisdiction" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Data of CDC COVID-19 Vaccine Distribution Allocations by Jurisdiction</h2>
@@ -139,7 +158,28 @@
 <p><a href="https://data.cdc.gov/Vaccinations/COVID-19-Vaccine-Distribution-Allocations-by-Juris/b7pe-5nws" class="uri">https://data.cdc.gov/Vaccinations/COVID-19-Vaccine-Distribution-Allocations-by-Juris/b7pe-5nws</a></p>
 <p>There are many data sources regarding COVID vaccination. This is the data given by official CDC department. The reason we pick this data source rather than others is that CDC is the most authoritative agency regarding COVID vaccine distribution.</p>
 <p>There are 3 types of COVID vaccine currently available: Pfizer, Moderna, and Janssen. We choose to compare how different vaccines are distributed in US. We thought of picking the most widely-used vaccine Pfizer and analyze its trend. However, we soon discovered that some states use Pfizer more often compared to Other states. Therefore, analyzing Pfizer vaccine alone doesn’t give any insight about vaccine usage across the country. Only cross-comparison of the three vaccines can give a complete image of how vaccines are used.</p>
-<p>Moreover, as data on the official CDC website updates daily. We pick April 7 to be the end-date in order to maintain consistency. In another word, we are analyzing vaccine distribution from its start week (varies for different vaccine) to the week of 04/12/2021 for 3 different vaccines.</p>
+<p>Some basic information about the data sets are provided below:</p>
+<p>COVID-19_Vaccine_Distribution_Allocations_by_Jurisdiction_-_Moderna.csv:</p>
+<pre><code>## Rows: 1,071
+## Columns: 4
+## $ Jurisdiction            &lt;chr&gt; &quot;Connecticut&quot;, &quot;Maine&quot;, &quot;Massachusetts&quot;, &quot;New …
+## $ Week_of_Allocations     &lt;chr&gt; &quot;04/12/2021&quot;, &quot;04/12/2021&quot;, &quot;04/12/2021&quot;, &quot;04/…
+## $ First_Dose_Allocations  &lt;dbl&gt; 37400, 14300, 72100, 14300, 11300, 6700, 91300…
+## $ Second_Dose_Allocations &lt;dbl&gt; 37400, 14300, 72100, 14300, 11300, 6700, 91300…</code></pre>
+<p>COVID-19_Vaccine_Distribution_Allocations_by_Jurisdiction_-_Janssen.csv:</p>
+<pre><code>## Rows: 378
+## Columns: 3
+## $ Jurisdiction           &lt;chr&gt; &quot;Connecticut&quot;, &quot;Maine&quot;, &quot;Massachusetts&quot;, &quot;New H…
+## $ Week_of_Allocations    &lt;chr&gt; &quot;04/12/2021&quot;, &quot;04/12/2021&quot;, &quot;04/12/2021&quot;, &quot;04/1…
+## $ First_Dose_Allocations &lt;dbl&gt; 6400, 2500, 12300, 2500, 2000, 1200, 15600, 198…</code></pre>
+<p>COVID-19_Vaccine_Distribution_Allocations_by_Jurisdiction_-_Pfizer.csv:</p>
+<pre><code>## Rows: 1,134
+## Columns: 4
+## $ Jurisdiction            &lt;chr&gt; &quot;Connecticut&quot;, &quot;Maine&quot;, &quot;Massachusetts&quot;, &quot;New …
+## $ Week_of_Allocations     &lt;chr&gt; &quot;04/12/2021&quot;, &quot;04/12/2021&quot;, &quot;04/12/2021&quot;, &quot;04/…
+## $ First_Dose_Allocations  &lt;dbl&gt; 51480, 19890, 97110, 19890, 15210, 9360, 12402…
+## $ Second_Dose_Allocations &lt;dbl&gt; 51480, 19890, 97110, 19890, 15210, 9360, 12402…</code></pre>
+<p>After checking the data set, we find that though the data sets have no missing values, there exist some inconsistency in the number of first and second dose allocations for a few states.</p>
 
 </div>
 </div>

@@ -1,2 +1,24 @@
 # Conclusion
 
+Let's see to what extent our initial questions are answered:
+
+Since the start of 2020, COVID new cases had been growing steadily, and reached its peak at the end of 2020 and start of 2021. After vaccination was approved by the government and put to use at the end of 2020, we see a sharp decrease of COVID-19 new cases and deaths.
+
+There are three vaccines approved by US FDA: Pfizer, Moderna, and Janssen.
+For all three vaccines, the distribution patterns don’t vary in different states. All three vaccines see an increase of usage after their releases. This is because we still have uptrending vaccine demands across the country.
+By putting three vaccines on the same graph, we see that Janssen vaccine had the highest increase rate (that is dosage increase amount / time period length). Currently, the three vaccines enjoy almost the same popularity. As demand for vaccine continue to increase in April due to the nation-wide vaccination on everyone, we expect Janssen vaccine to become the most popular vaccine across the country.
+
+When going deep into how the vaccines were distributed across the population, we discover that old people (above 50 years old) were getting the most proportion of the vaccines. This is understandable because they are more vulnerable to the virus.    
+Additionally, we find that each the ethnicity group are basically on the same page of getting vaccination, with `Multiple/Other` and `American Indian/Alaska Native` doing slightly better.   
+We expect the vaccines to become more evenly distribution across age group and ethnicity group after April when vaccines become available to everyone.   
+
+
+By examining individual states, we see that there is a positive relationship between total cases in a state and number of vaccines distributed to the state. This makes sense because CDC is expected to give more vaccines to states with more cases. However, we found that the efficiency of vaccine use (that is, doses given / doses received from CDC) is not related to the total cases in the state.
+
+Throughout the project, we hope we have shown a clear image of the development of the COVID-19, and how we are doing to stop the pandemic.
+
+At the end, we want to mention that since the limit of time and people, this project inevitably fails to cover all aspects of this pandemic. We try our best to make those aspects that are discussed more clear and comprehensive. For any thoughts to be discussed and suggestions on improvements, please email us at:
+
+  Brian wendou Mao <bm3024@columbia.edu>   
+  Wanxiao Hong <wh2493@columbia.edu>   
+  Yuzhao Pan <yp2578@columbia.edu>   
