@@ -5,7 +5,7 @@ This is the final project for the EDAV course.
 ### Group member:
 
 Wanxiao Hong (wh2493@columbia.edu)
-Wendou Mao (bm3024@columbia.edu)
+Brian Mao (bm3024@columbia.edu)
 Yuzhao Pan (yp2578@columbia.edu)
 
 ### About the project:
